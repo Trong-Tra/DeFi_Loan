@@ -35,6 +35,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgRepayLoan int = 100
 
+	opWeightMsgLiquidateLoan = "op_weight_msg_liquidate_loan"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgLiquidateLoan int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -96,6 +100,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		loansimulation.SimulateMsgRepayLoan(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgLiquidateLoan int
+	simState.AppParams.GetOrGenerate(opWeightMsgLiquidateLoan, &weightMsgLiquidateLoan, nil,
+		func(_ *rand.Rand) {
+			weightMsgLiquidateLoan = defaultWeightMsgLiquidateLoan
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgLiquidateLoan,
+		loansimulation.SimulateMsgLiquidateLoan(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -125,6 +140,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgRepayLoan,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				loansimulation.SimulateMsgRepayLoan(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgLiquidateLoan,
+			defaultWeightMsgLiquidateLoan,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				loansimulation.SimulateMsgLiquidateLoan(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),
