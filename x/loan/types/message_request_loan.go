@@ -29,7 +29,7 @@ func (msg *MsgRequestLoan) ValidateBasic() error {
 	if !amount.IsValid() {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "Amount is not a valid Coins object")
 	}
-	if amount.Empty() {
+	if amount.IsZero() {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "Amount is empty")
 	}
 	fee, _ := sdk.ParseCoinNormalized(msg.Fee)
@@ -47,7 +47,7 @@ func (msg *MsgRequestLoan) ValidateBasic() error {
 	if !collateral.IsValid() {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "Collateral is not a valid Coiins object")
 	}
-	if collateral.Empty() {
+	if collateral.IsZero() {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "collateral is empty")
 	}
 	return nil
