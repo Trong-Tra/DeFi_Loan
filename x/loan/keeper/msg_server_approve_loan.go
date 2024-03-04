@@ -34,7 +34,7 @@ func (k msgServer) ApproveLoan(goCtx context.Context, msg *types.MsgApproveLoan)
 	}
 	loan.Lender = msg.Creator
 	loan.State = "approved"
-	k.Setloan(ctx, loan)
+	k.SetLoan(ctx, loan)
 
 	return &types.MsgApproveLoanResponse{}, nil
 }
