@@ -23,13 +23,23 @@ A platform powered by blockchain that enables users to lend and borrow digital a
 
 ## Get started
 
+Run the chain with this command:
+
 ```
 ignite chain serve
 ```
 
-find your daemon file in the your compiled go files <br>
-put it in the cmd/loand and called it <br>
-then you can call queries/functions of the chain.
+After the blockchain is running you need to have the daemon file of the chain in order for it to perform queries or call functions. <br>
+
+First, find your daemon file in the your compiled go files. <br>
+Put it in the cmd/loand and called it. <br>
+cd into the file (cmd/loand) and from there you can perform queries or call functions. For example:
+
+```
+./loand tx loan request-loan 1000token 100token 1000foocoin 500 --from alice --chain-id loan
+```
+
+Note: Use config.yml as a mock database, add/create the valid amount of token to perform your desire action.
 
 ### Configure
 
