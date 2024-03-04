@@ -27,8 +27,8 @@ A platform powered by blockchain that enables users to lend and borrow digital a
 ignite chain serve
 ```
 
-find your daemon file in the your compiled go files
-put it in the cmd/loand and called it
+find your daemon file in the your compiled go files <br>
+put it in the cmd/loand and called it <br>
 then you can call queries/functions of the chain.
 
 ### Configure
