@@ -25,14 +25,14 @@ func (msg *MsgRequestLoan) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid creator address (%s)", err)
 	}
-	amount, _ := sdk.ParseCoinNormalized(msg.Amount)
+	amount, _ := sdk.ParseCoinsNormalized(msg.Amount)
 	if !amount.IsValid() {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "Amount is not a valid Coins object")
 	}
-	if amount.IsZero() {
+	if amount.Empty() {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "Amount is empty")
 	}
-	fee, _ := sdk.ParseCoinNormalized(msg.Fee)
+	fee, _ := sdk.ParseCoinsNormalized(msg.Fee)
 	if !fee.IsValid() {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "Fee is not a valid Coins object")
 	}
@@ -43,11 +43,11 @@ func (msg *MsgRequestLoan) ValidateBasic() error {
 	if deadline <= 0 {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "Deadline need to be a positive integer")
 	}
-	collateral, _ := sdk.ParseCoinNormalized(msg.Collateral)
+	collateral, _ := sdk.ParseCoinsNormalized(msg.Collateral)
 	if !collateral.IsValid() {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "Collateral is not a valid Coiins object")
 	}
-	if collateral.IsZero() {
+	if collateral.Empty() {
 		return errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "collateral is empty")
 	}
 	return nil
