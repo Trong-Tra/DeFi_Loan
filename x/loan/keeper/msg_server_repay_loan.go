@@ -27,9 +27,9 @@ func (k msgServer) RepayLoan(goCtx context.Context, msg *types.MsgRepayLoan) (*t
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "Cannot repay: not the borrower")
 	}
 
-	amount, _ := sdk.ParseCoinNormalized(loan.Amount)
-	fee, _ := sdk.ParseCoinNormalized(loan.Fee)
-	collateral, _ := sdk.ParseCoinNormalized(loan.Collateral)
+	amount, _ := sdk.ParseCoinsNormalized(loan.Amount)
+	fee, _ := sdk.ParseCoinsNormalized(loan.Fee)
+	collateral, _ := sdk.ParseCoinsNormalized(loan.Collateral)
 	err := k.bankKeeper.SendCoins(ctx, borrower, lender, amount)
 	if err != nil {
 		return nil, err
