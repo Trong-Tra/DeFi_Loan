@@ -65,8 +65,8 @@ For more information see the [monorepo for Ignite front-end development](https:/
 
 <hr>
 Developer note:
-Lasted update: 3/4/2024 <br>
+Lasted update: 3/6/2024 <br>
 
 - This chain is for studying purpose, not recommend to be used as mainnet or testnet.
 - The codebase may have bugs that could potentially lead to loss of funds. Use at your own risk.
-- Functions and queries is not fully tested, the repository does not include the daemon file, please follow the instruction or contact with the repo-owner for further assistance.
+- Functions and queries are fully tested, the repository does not include the daemon file, please follow the instruction or contact with the repo-owner for further assistance.
